@@ -27189,7 +27189,7 @@ function main {
 					writelog "ERROR" "${FUNCNAME[0]} - Unknown command '$*'" "E"
 				fi
 			fi
-		elif grep -q "$SAC" <<< "$@" || grep -q "$L2EA" <<< "$@"; then
+		elif grep -q "$SAC" <<< "$@" || grep -q "$L2EA" <<< "$@" || { [ -n "$SteamAppId" ] && [ "$SteamAppId" -gt "0" ] && grep -q "$WFEAR" <<< "$@"; }; then
 			# We check if incoming commands contain 'steamapps/common' to interpret them as game launch commands
 			# But if $1 is a known command in this list, explicitly pass it to 'commandline' as we know it is NOT a game command
 			# This prevents commands which contain 'steamapps/common' ANYWHERE in their command (including as paths as parameters to other flags) from being interpreted as a game launch
