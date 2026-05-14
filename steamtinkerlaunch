@@ -2300,6 +2300,9 @@ function setGameVars {
 
 	GFD="$(awk -F 'common' '{print $1}' <<< "$EFD")common/$(awk -F 'common' '{print $NF}' <<< "$EFD" | cut -d'/' -f2)" # f.e. used for vortex symlinks
 	GN="$(grep -oE 'common/[^\/]+' <<< "$EFD" | awk -F 'common/' '{print $NF}')"				# THIS is hopefully the proper game name
+	if [ -z "$GN" ]; then
+		GN="$GE"
+	fi
 
 	if [ -z "$STEAM_COMPAT_TOOL_PATHS" ] || [ "$STEAM_COMPAT_TOOL_PATHS" == "" ]; then
 		HAVESCTP=0
